@@ -1,0 +1,28 @@
+*CODE FROM M ANDERSON PAPER (2012)
+*CREATE DATASET WITH ALL VARIABLES LINKED TO APPROPRIATE P-VALUES (pval)
+quietly sum pval
+local totalpvals = r(N)
+quietly gen int original_sorting_order = _n
+quietly sort pval
+quietly gen int rank = _n if pval~=.
+local qval = 1
+gen bky06_qval = 1 if pval~=.
+while `qval' > 0 {
+local qval_adj = `qval'/(1+`qval')
+gen fdr_temp1 = `qval_adj'*rank/`totalpvals'
+gen reject_temp1 = (fdr_temp1>=pval) if pval~=.
+gen reject_rank1 = reject_temp1*rank
+egen total_rejected1 = max(reject_rank1)
+local qval_2st = `qval_adj'*(`totalpvals'/(`totalpvals'-total_rejected1[1]))
+gen fdr_temp2 = `qval_2st'*rank/`totalpvals'
+gen reject_temp2 = (fdr_temp2>=pval) if pval~=.
+gen reject_rank2 = reject_temp2*rank
+egen total_rejected2 = max(reject_rank2)
+replace bky06_qval = `qval' if rank <= total_rejected2 & rank~=.
+drop fdr_temp* reject_temp* reject_rank* total_rejected*
+local qval = `qval' - .001
+}
+
+quietly sort original_sorting_order
+pause off
+set more on
