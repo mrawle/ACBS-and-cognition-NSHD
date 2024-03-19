@@ -15,7 +15,7 @@ _Generate ACBS Score Age 69.do_ - Example file detailing the calculation of Anti
 _MJR ACBS and cognition (NSHD).do_ - The second file provided is a collection of the code used to calculate the variables used within the paper outlined below, alongside code to create appropriate tables, figures and sensitivity analyses (the outputs of which are all provided in the submitted manuscript).
 Please note, some variables have been renamed from the original var names in NSHD (especially where they are used in longitudinal analysis), this has been outlined within the code.
 
-_FDR code.do_ Stata code for creating sharpened q-values from a dataset of p-values. Based on code from ANDERSON, M. L. 2012. Multiple Inference and Gender Differences in the Effects of Early Intervention: A Reevaluation of the Abecedarian, Perry Preschool, and Early Training Projects. Journal of the American Statistical Association, 103, 1481-1495.
+_FDR code.do_ - Stata code for creating sharpened q-values from a dataset of p-values. Based on code from ANDERSON, M. L. 2012. Multiple Inference and Gender Differences in the Effects of Early Intervention: A Reevaluation of the Abecedarian, Perry Preschool, and Early Training Projects. Journal of the American Statistical Association, 103, 1481-1495.
 
 
 **ABSTRACT**
